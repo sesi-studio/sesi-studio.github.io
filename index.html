@@ -4,216 +4,242 @@
   <meta charset="utf-8" />
   <title>SESI STUDIO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
       /* Brand Colors */
-      --primary: #554276;    /* 깊은 보라색 (밤하늘) */
-      --secondary: #F2CD6A;  /* 따뜻한 노란색 (달빛) */
+      --primary: #554276;
+      --secondary: #F2CD6A;
 
-      /* Theme Colors */
-      --bg-sky: linear-gradient(180deg, #6a56a0 0%, var(--primary) 100%); /* 심플한 밤하늘 그라데이션 */
-      --surface-moon: #fffcf5; /* 달빛을 머금은 듯한 따뜻한 미색 박스 */
+      /* Background: 차분한 밤하늘 */
+      --bg-gradient: linear-gradient(170deg, #352a4f 0%, #15121e 100%);
       
-      /* Text Colors */
-      --text-on-dark-main: #FFFFFF;      /* 어두운 배경 위 메인 텍스트 */
-      --text-on-dark-sub: rgba(255, 255, 255, 0.7); /* 어두운 배경 위 보조 텍스트 */
-      --text-on-light-main: #2A213D;     /* 밝은 박스 안 메인 텍스트 (완전 검정 대신 진한 보라) */
-      --text-on-light-sub: #6E6E6E;      /* 밝은 박스 안 보조 텍스트 */
+      /* Glassmorphism Variables */
+      --surface-glass: rgba(255, 255, 255, 0.07);
+      --border-highlight: rgba(255, 255, 255, 0.15);
+      --border-shadow: rgba(255, 255, 255, 0.05);
 
-      --radius: 24px;
+      /* Text Colors */
+      --text-white: #EDEDED;
+      --text-gray: #B0ABC0;
+      
+      --radius: 32px; /* 라운드 조금 더 부드럽게 */
     }
 
     * { box-sizing: border-box; }
-    html, body { height: 100%; }
     
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
-      background: var(--bg-sky); /* 밤하늘 배경 적용 */
-      color: var(--text-on-dark-main);
+      /* 기본 본문은 가독성 좋은 Inter/시스템 폰트 */
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Pretendard", "Segoe UI", Roboto, sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-white);
       line-height: 1.6;
-      word-break: keep-all;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      -webkit-font-smoothing: antialiased;
     }
 
     .container {
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 80px 24px 60px;
+      width: 100%;
+      max-width: 500px;
+      padding: 70px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
     }
 
-    /* --- Header Area (밤하늘 위) --- */
-    .hero {
+    /* --- Typography: Wide & Bold --- */
+    
+    /* 영어 타이틀, 라벨용 폰트 (Montserrat) */
+    .font-wide {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .header {
       text-align: center;
-      margin-bottom: 50px;
     }
 
     h1 {
-      margin: 0 0 20px;
-      font-size: 2.5rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--secondary); /* 타이틀을 달빛 색으로 강조 */
-    }
-
-    .hero p {
-      margin: 8px 0;
-      color: var(--text-on-dark-sub);
-      font-size: 1rem;
-    }
-
-    .hero p strong {
-      color: var(--secondary); /* 강조 텍스트도 달빛 색 */
-      font-weight: 700;
-    }
-
-    /* --- Main Content Card (떠 있는 달 컨셉) --- */
-    .frame {
-      background: var(--surface-moon);
-      border-radius: var(--radius);
-      padding: 40px;
-      margin-bottom: 50px;
+      margin: 0 0 36px;
+      font-size: 2.4rem; /* 사이즈 키움 */
+      font-weight: 900;  /* 가장 두꺼운 웨이트 사용 */
+      letter-spacing: -0.01em; /* 두꺼운 폰트는 자간을 살짝 좁혀야 단단해 보임 */
+      color: var(--text-white);
+      font-family: 'Montserrat', sans-serif; /* 와이드 폰트 적용 */
+      text-transform: uppercase; /* 대문자로 변경하여 더 꽉 찬 느낌 */
       
-      /* 달이 빛나는 듯한 효과 */
-      border: 2px solid rgba(242, 205, 106, 0.3); 
-      box-shadow: 0 0 60px rgba(242, 205, 106, 0.25);
-      position: relative; /* 떠있는 느낌을 위해 */
+      /* 텍스트에 미세한 입체감 */
+      text-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
 
-    .section-title {
-      margin-bottom: 24px;
-      border-bottom: 1px solid rgba(85, 66, 118, 0.1); /* Primary 컬러를 연하게 사용 */
-      padding-bottom: 16px;
-    }
-
-    .section-title h2 {
-      margin: 0;
-      font-size: 1.3rem;
-      color: var(--primary); /* 박스 안 타이틀은 Primary 컬러 */
-      font-weight: 700;
-    }
-
-    .kicker {
-      display: block;
-      margin-top: 6px;
-      font-size: 0.75rem;
-      color: var(--primary);
-      opacity: 0.7;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-    }
-
-    .content p {
-      margin: 12px 0;
-      color: var(--text-on-light-sub);
-    }
-
-    .content p strong {
-      color: var(--text-on-light-main);
-      font-weight: 700;
-      font-size: 1.1rem;
-    }
-
-    /* --- Buttons --- */
-    .btn-row {
+    .brand-values {
       display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 24px;
+      flex-direction: column;
+      gap: 24px;
     }
 
-    .btn {
-      display: inline-flex;
+    .value-item {
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      font-weight: 600;
-      border-radius: 99px; /* 둥근 버튼 */
+      gap: 6px;
     }
 
-    /* Primary Button (Inside the moon box) */
-    .btn-primary {
-      background-color: var(--primary);
-      color: white;
-      padding: 14px 28px;
+    .label-xs {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      color: var(--secondary);
+      font-weight: 700;
+      letter-spacing: 0.15em; /* 자간을 넓혀서 시원하게 */
+      text-transform: uppercase;
+    }
+
+    .value-text {
       font-size: 1rem;
-      box-shadow: 0 4px 12px rgba(85, 66, 118, 0.3);
+      color: var(--text-gray);
+      text-align: center;
+      font-weight: 400;
+      word-break: keep-all;
+    }
+
+    /* --- Main Card --- */
+    .content-card {
+      background: var(--surface-glass);
+      border-top: 1px solid var(--border-highlight);
+      border-bottom: 1px solid var(--border-shadow);
+      border-radius: var(--radius);
+      padding: 42px 30px;
+      text-align: center;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: rgba(85, 66, 118, 0.6);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 99px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      color: #EAE6F0;
+      font-weight: 700; /* 배지도 조금 더 두껍게 */
+      letter-spacing: 0.08em;
+    }
+
+    .card-title {
+      font-size: 1.5rem; /* 제목 사이즈 업 */
+      font-weight: 800;  /* 한글 제목도 아주 두껍게 (Extra Bold) */
+      margin: 22px 0;
+      color: var(--text-white);
+      letter-spacing: -0.02em;
+    }
+
+    .card-desc {
+      font-size: 1.05rem;
+      color: var(--text-gray);
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    .highlight {
+      color: var(--text-white);
+      font-weight: 700;
+      /* 형광펜 효과처럼 뒤에 은은한 글로우 */
+      text-shadow: 0 0 15px rgba(242, 205, 106, 0.25);
+    }
+
+    /* --- Button: Wide & Strong --- */
+    .btn-primary {
+      display: block;
+      width: 60%;
+      margin: 0 auto;
+      background: var(--secondary);
+      color: #2b2336;
+      text-decoration: none;
+      padding: 18px 0;
+      border-radius: 99px;
+      
+      /* 버튼 폰트도 Montserrat 적용하여 와이드하게 */
+      font-family: 'Montserrat', sans-serif; 
+      font-weight: 800; /* Extra Bold */
+      font-size: 1rem;
+      letter-spacing: 0.03em;
+      
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 4px 12px rgba(242, 205, 106, 0.25);
     }
 
     .btn-primary:hover {
-      background-color: #463663; /* 조금 더 어두운 보라 */
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(85, 66, 118, 0.4);
+      background: #FFE194;
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(242, 205, 106, 0.45);
     }
 
-    /* --- Footer / Support Area (밤하늘 위) --- */
-    .footer-divider {
-      height: 1px;
-      /* 양옆으로 사라지는 은은한 달빛 라인 */
-      background: linear-gradient(90deg, transparent, rgba(242, 205, 106, 0.4), transparent);
-      margin: 40px 0;
-      width: 100%;
-    }
-
-    .support-footer {
+    /* --- Footer --- */
+    .support-area {
       text-align: center;
-      color: var(--text-on-dark-sub);
+      margin-top: 10px;
     }
 
-    .support-title h3 {
+    .support-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      color: var(--secondary);
+      letter-spacing: 0.15em;
+      margin-bottom: 20px;
+      font-weight: 800;
+      opacity: 0.9;
+      text-transform: uppercase;
+    }
+
+    .contact-info {
       font-size: 0.95rem;
-      margin-bottom: 4px;
-      color: var(--secondary); /* 달빛 색 */
-      letter-spacing: 0.05em;
+      color: var(--text-gray);
+      margin: 8px 0;
     }
     
-    .support-title .kicker {
-      margin-bottom: 20px;
-      color: var(--text-on-dark-sub);
-      opacity: 0.6;
-    }
-
-    .support-footer p {
-      margin: 8px 0;
-      font-size: 0.95rem;
-    }
-
-    .support-footer p strong {
-      color: var(--text-on-dark-main);
+    .contact-info strong {
+      color: var(--text-white);
       font-weight: 600;
     }
 
-    /* Secondary Button (Privacy) - 작고 심플하게 */
     .btn-secondary {
-      background-color: transparent;
-      color: rgba(255, 255, 255, 0.6);
+      display: inline-block;
+      margin-top: 30px;
+      color: rgba(255, 255, 255, 0.35);
+      text-decoration: none;
       font-size: 0.8rem;
-      padding: 8px 16px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      margin-top: 20px;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s ease;
     }
 
     .btn-secondary:hover {
       color: var(--secondary);
-      border-color: var(--secondary);
-      background-color: rgba(242, 205, 106, 0.1);
+      border-bottom-color: var(--secondary);
     }
 
-    .footer {
+    .copyright {
+      font-family: 'Montserrat', sans-serif;
       margin-top: 50px;
-      text-align: center;
-      font-size: 0.8rem;
-      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.2);
+      font-weight: 500;
     }
-
-    /* Mobile adjustments */
+    
+    /* 모바일 대응 */
     @media (max-width: 520px) {
-      .container { padding-top: 50px; }
-      .frame { padding: 28px 24px; }
-      h1 { font-size: 2rem; }
-      .btn-row { justify-content: center; }
-      .btn-primary { width: 100%; }
+       h1 { font-size: 2rem; }
+       .card-title { font-size: 1.35rem; }
     }
   </style>
 </head>
@@ -221,54 +247,50 @@
 <body>
   <div class="container">
 
-    <header class="hero">
+    <header class="header">
       <h1>SESI STUDIO</h1>
-      <p><strong>Mission</strong> | 재미있고 의미있는 이야기를 전합니다</p>
-      <p><strong>Vision</strong> | 일상에 소소한 힘이 되고, 한 번 보면 계속 떠오르는 매력적인 콘텐츠를 만듭니다</p>
+
+      <div class="brand-values">
+        <div class="value-item">
+          <span class="label-xs">MISSION</span>
+          <span class="value-text">재미있고 의미있는 이야기를 전합니다</span>
+        </div>
+        <div class="value-item">
+          <span class="label-xs">VISION</span>
+          <span class="value-text">일상에 소소한 힘이 되는<br>매력적인 콘텐츠를 만듭니다</span>
+        </div>
+      </div>
     </header>
 
-    <main class="frame">
-        <section class="section" aria-labelledby="created-stories">
-          <div class="section-title">
-            <h2 id="created-stories">Created Stories</h2>
-            <span class="kicker">MOBILE APPLICATION</span>
-          </div>
+    <main class="content-card">
+      <span class="badge">MOBILE APPLICATION</span>
+      
+      <h2 class="card-title">말하는감자 - 두번째 모험</h2>
+      
+      <p class="card-desc">
+        따뜻한 이야기로 유저의 새로운 도전을<br>
+        응원하는 습관 형성 게임입니다.<br><br>
+        지금은 그저 말하는 감자일지라도,<br>
+        꾸준히 도전하다 보면 분명 멋진 감자가 될 거예요.
+      </p>
 
-          <div class="content">
-            <p>
-              <strong>말하는감자 - 두번째 모험</strong> 
-              <br>
-              따뜻한 이야기로 유저의 새로운 도전을 응원하는 습관 형성 게임입니다.
-              <br>
-              지금은 그저 말하는 감자일지라도, 꾸준히 도전하다 보면 분명 멋진 감자가 될 거라는 메시지를 전합니다.
-            </p>
-
-            <div class="btn-row">
-              <a href="https://www.instagram.com/talking_gamjwa/" class="btn btn-primary">인스타그램 보러가기</a>
-            </div>
-          </div>
-        </section>
+      <a href="https://www.instagram.com/talking_gamjwa/" class="btn btn-primary">
+        인스타그램
+      </a>
     </main>
 
-    <div class="footer-divider" role="separator"></div>
+    <section class="support-area">
+      <div class="support-title">Customer Support</div>
+      
+      <div class="contact-info">고객 지원 &nbsp;|&nbsp; <strong>sesistudio.cs@gmail.com</strong></div>
+      <div class="contact-info">비즈니스 문의 &nbsp;|&nbsp; <strong>sesi.times@gmail.com</strong></div>
 
-    <section class="support-footer" aria-labelledby="customer-support">
-      <div class="support-title">
-        <h3 id="customer-support">Customer Support</h3>
-        <span class="kicker">CONTACT</span>
-      </div>
-
-      <p>고객 지원 | <strong>sesistudio.cs@gmail.com</strong></p>
-      <p>비즈니스 문의 | <strong>sesi.times@gmail.com</strong></p>
-
-      <div class="btn-row" style="justify-content: center;">
-        <a href="/privacy.html" class="btn btn-secondary">개인정보 처리방침</a>
+      <a href="/privacy.html" class="btn btn-secondary">개인정보 처리방침</a>
+      
+      <div class="copyright">
+        &copy; 2026 Sesi Studio. All rights reserved.
       </div>
     </section>
-
-    <footer class="footer">
-      &copy; 2026 Sesi Studio. All rights reserved.
-    </footer>
 
   </div>
 </body>
