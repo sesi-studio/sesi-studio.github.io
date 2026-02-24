@@ -13,6 +13,8 @@
     rel="stylesheet">
 
   <style>
+    @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
     :root {
       /* Brand Colors */
       --primary: #554276;
@@ -39,7 +41,7 @@
 
     body {
       margin: 0;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Pretendard", "Segoe UI", Roboto, sans-serif;
+      font-family: 'Montserrat', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       background: var(--bg-gradient);
       color: var(--text-white);
       line-height: 1.6;
@@ -73,7 +75,6 @@
       font-weight: 900;
       letter-spacing: -0.01em;
       color: var(--text-white);
-      font-family: 'Montserrat', sans-serif;
       text-transform: uppercase;
       /* 그림자 효과 제거 -> 깔끔함 */
       text-shadow: none;
@@ -98,7 +99,6 @@
     }
 
     .label-xs {
-      font-family: 'Montserrat', sans-serif;
       font-size: 0.8rem;
       color: var(--secondary);
       font-weight: 700;
@@ -149,7 +149,6 @@
       /* 투명도 높임 */
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 99px;
-      font-family: 'Montserrat', sans-serif;
       font-size: 0.75rem;
       color: #EAE6F0;
       font-weight: 600;
@@ -196,7 +195,6 @@
       text-decoration: none;
       padding: 18px 0;
       border-radius: 99px;
-      font-family: 'Montserrat', sans-serif;
       font-weight: 800;
       font-size: 1.05rem;
       letter-spacing: 0.03em;
@@ -223,7 +221,6 @@
       padding: 18px 0;
       border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 99px;
-      font-family: 'Montserrat', sans-serif;
       font-weight: 600;
       font-size: 1.05rem;
       letter-spacing: 0.03em;
@@ -301,7 +298,6 @@
     }
 
     .support-title {
-      font-family: 'Montserrat', sans-serif;
       font-size: 0.85rem;
       color: var(--secondary);
       letter-spacing: 0.15em;
@@ -339,7 +335,6 @@
     }
 
     .copyright {
-      font-family: 'Montserrat', sans-serif;
       margin-top: 56px;
       font-size: 0.75rem;
       color: rgba(255, 255, 255, 0.2);
@@ -388,6 +383,35 @@
         width: 90%;
       }
     }
+
+    .lang-toggle {
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      /* 모바일 대응 시 미디어 쿼리에서 right: 20px 정도로 수정 필요 */
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .lang-toggle button {
+      background: none;
+      border: none;
+      color: var(--text-gray);
+      cursor: pointer;
+      padding: 0;
+      transition: color 0.2s ease;
+    }
+
+    .lang-toggle button.active {
+      color: var(--secondary);
+    }
+
+    .lang-toggle button:hover {
+      color: var(--text-white);
+    }
   </style>
 </head>
 
@@ -395,25 +419,31 @@
   <div class="container">
 
     <header class="header">
-      <h1>SESI STUDIO</h1>
+      <div class="lang-toggle">
+        <button id="btn-ko" class="active" onclick="changeLanguage('ko')">KOR</button>
+        <span>|</span>
+        <button id="btn-en" onclick="changeLanguage('en')">ENG</button>
+      </div>
+
+      <h1 data-i18n="studio_name">세시스튜디오</h1>
 
       <div class="brand-values">
         <span class="label-xs">MISSION</span>
         <span class="divider">|</span>
-        <span class="value-text">재미있고 의미있는 이야기를 전합니다</span>
+        <span class="value-text" data-i18n="mission_text">재미있고 의미있는 이야기를 전합니다</span>
 
         <span class="label-xs">VISION</span>
         <span class="divider">|</span>
-        <span class="value-text">일상에 소소한 힘이 되는 매력적인 콘텐츠를 만듭니다</span>
+        <span class="value-text" data-i18n="vision_text">일상에 소소한 힘이 되는 매력적인 콘텐츠를 만듭니다</span>
       </div>
     </header>
 
     <main class="content-card">
       <span class="badge">MOBILE APPLICATION</span>
 
-      <h2 class="card-title">말하는감자 - 두번째 모험</h2>
+      <h2 class="card-title" data-i18n="tp2_app_title">말하는감자 - 두번째 모험</h2>
 
-      <p class="card-desc">
+      <p class="card-desc" data-i18n="tp2_app_desc">
         따뜻한 이야기로 유저의 새로운 도전을 응원하는 습관 형성 게임입니다.<br><br>
         지금은 그저 말하는 감자일지라도,<br>
         꾸준히 도전하다 보면 분명 멋진 감자가 될 거예요.
@@ -421,10 +451,10 @@
 
       <div class="button-group">
         <a href="https://play.google.com/store/apps/details?id=com.sesistudio.tp2&pcampaignid=web_share"
-          class="btn btn-primary">
+          class="btn btn-primary" data-i18n="tp2_btn_download">
           Google Play 다운로드
         </a>
-        <a href="https://www.instagram.com/talking_gamjwa/" class="btn btn-outline">
+        <a href="https://www.instagram.com/talking_gamjwa/" class="btn btn-outline" data-i18n="tp2_btn_insta">
           인스타그램 둘러보기
         </a>
       </div>
@@ -433,12 +463,18 @@
     <section class="support-area">
       <div class="support-title">Customer Support</div>
 
-      <div class="contact-info">고객 지원 &nbsp;|&nbsp; <strong>sesistudio.cs@gmail.com</strong></div>
-      <div class="contact-info">비즈니스 문의 &nbsp;|&nbsp; <strong>sesi.times@gmail.com</strong></div>
+      <div class="contact-info">
+        <span data-i18n="customer_service">고객 지원</span> &nbsp;|&nbsp; <strong>sesistudio.cs@gmail.com</strong>
+      </div>
+
+      <div class="contact-info">
+        <span data-i18n="business_contact">비즈니스 문의</span> &nbsp;|&nbsp; <strong>sesi.times@gmail.com</strong>
+      </div>
 
       <div style="display: flex; justify-content: center; gap: 24px; margin-top: 36px;">
-        <a href="/privacy.html" class="btn btn-secondary" style="margin-top: 0;">개인정보 처리방침</a>
-        <a href="/refund.html" class="btn btn-secondary" style="margin-top: 0;">청약철회 약관</a>
+        <a href="/privacy.html" class="btn btn-secondary" style="margin-top: 0;" data-i18n="privacy_policy">개인정보
+          처리방침</a>
+        <a href="/refund.html" class="btn btn-secondary" style="margin-top: 0;" data-i18n="refund_policy">청약철회 약관</a>
       </div>
 
       <div class="copyright">
@@ -448,5 +484,63 @@
 
   </div>
 </body>
+
+<script>
+  const i18nData = {
+    ko: {
+      studio_name: "세시스튜디오",
+      mission_text: "재미있고 의미있는 이야기를 전합니다",
+      vision_text: "일상에 소소한 힘이 되는 매력적인 콘텐츠를 만듭니다",
+      tp2_app_title: "말하는감자 - 두번째 모험",
+      tp2_app_desc: "따뜻한 이야기로 유저의 새로운 도전을 응원하는 습관 형성 게임입니다.<br><br>지금은 그저 말하는 감자일지라도,<br>꾸준히 도전하다 보면 분명 멋진 감자가 될 거예요.",
+      tp2_btn_download: "Google Play 다운로드",
+      tp2_btn_insta: "인스타그램 둘러보기",
+      customer_service: "고객 지원",
+      business_contact: "비즈니스 문의",
+      privacy_policy: "개인정보 처리방침",
+      refund_policy: "청약철회 약관"
+    },
+    en: {
+      studio_name: "SESI STUDIO",
+      mission_text: "We deliver fun and meaningful stories",
+      vision_text: "Creating engaging content that brings a little strength to your daily life",
+      tp2_app_title: "Talking Potato - Second Journey",
+      tp2_app_desc: "A habit-forming game that supports your challenges with warm stories.<br><br>Even if you are just a talking potato right now,<br>with consistent effort, you will surely become an amazing potato.",
+      tp2_btn_download: "Download on Google Play",
+      tp2_btn_insta: "Visit Instagram",
+      customer_service: "Customer Service",
+      business_contact: "Bussiness Contact",
+      privacy_policy: "Privacy Policy",
+      refund_policy: "Refund Policy"
+    }
+  };
+
+  function changeLanguage(lang) {
+    // 1. 텍스트 변경
+    const elements = document.querySelectorAll('[data-i18n]');
+    elements.forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (i18nData[lang][key]) {
+        el.innerHTML = i18nData[lang][key]; // <br> 태그 렌더링을 위해 innerHTML 사용
+      }
+    });
+
+    // 2. 토글 버튼 활성화 상태 변경
+    document.getElementById('btn-ko').classList.remove('active');
+    document.getElementById('btn-en').classList.remove('active');
+    document.getElementById(`btn-${lang}`).classList.add('active');
+
+    // 3. 유저 설정 저장
+    localStorage.setItem('preferredLang', lang);
+  }
+
+  // 페이지 로드 시 실행
+  document.addEventListener('DOMContentLoaded', () => {
+    // 브라우저 언어가 영문인지 확인하여 자동 설정, 또는 기존 저장된 설정 불러오기
+    const browserLang = navigator.language.includes('en') ? 'en' : 'ko';
+    const savedLang = localStorage.getItem('preferredLang') || browserLang;
+    changeLanguage(savedLang);
+  });
+</script>
 
 </html>
