@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@400;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;600&display=swap"
     rel="stylesheet">
 
   <style>
@@ -20,17 +20,16 @@
       --primary: #554276;
       --secondary: #F2CD6A;
 
-      /* Background: 차분한 파스텔 퍼플 (과한 그라데이션 대신 부드럽게) */
-      --bg-gradient: linear-gradient(180deg, #54457F 0%, #2A2438 100%);
+      /* Background: 차분하고 부드러운 다크 퍼플 */
+      --bg-gradient: linear-gradient(180deg, #4E3E71 0%, #251F33 100%);
 
-      /* Surface: 그림자나 광택을 줄인 매트한 반투명 레이어 */
-      --surface-glass: rgba(255, 255, 255, 0.06);
-      --border-line: rgba(255, 255, 255, 0.1);
+      /* Surface: 시각적 부담을 줄인 더 투명하고 부드러운 매트 레이어 */
+      --surface-glass: rgba(255, 255, 255, 0.045);
+      --border-line: rgba(255, 255, 255, 0.08);
 
       /* Text Colors */
       --text-white: #FFFFFF;
       --text-gray: #CCC6D9;
-      /* 가독성 좋은 밝은 회색 */
 
       --radius: 24px;
     }
@@ -58,7 +57,7 @@
       padding: 80px 24px;
       display: flex;
       flex-direction: column;
-      gap: 60px;
+      gap: 56px;
     }
 
     /* --- Header --- */
@@ -66,34 +65,55 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      /* 전체 블록은 중앙 정렬 */
+      position: relative;
+    }
+
+    .lang-toggle {
+      position: absolute;
+      top: -30px;
+      right: 0;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .lang-toggle button {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      padding: 0;
+      transition: color 0.2s ease;
+    }
+
+    .lang-toggle button.active {
+      color: var(--secondary);
+    }
+
+    .lang-toggle button:hover {
+      color: var(--text-white);
     }
 
     h1 {
-      margin: 0 0 40px;
-      font-size: 2.6rem;
-      font-weight: 900;
+      margin: 0 0 36px;
+      font-size: 2.3rem;
+      /* 크기 축소로 부담 감소 */
+      font-weight: 800;
+      /* 900 -> 800으로 무게감 감소 */
       letter-spacing: -0.01em;
       color: var(--text-white);
       text-transform: uppercase;
-      /* 그림자 효과 제거 -> 깔끔함 */
       text-shadow: none;
     }
 
-    /* --- [수정] Grid Layout for Mission & Vision --- */
-    /* 중앙에 위치하지만 내부는 왼쪽 정렬 */
     .brand-values {
       display: grid;
-      /* 라벨(auto) | 구분선(auto) | 내용(1fr) */
       grid-template-columns: auto auto 1fr;
       gap: 12px 24px;
-      /* 행 간격 12px, 열 간격 24px */
       align-items: center;
-
-      /* 텍스트 왼쪽 정렬 */
       text-align: left;
-
-      /* 콘텐츠 크기에 딱 맞게 줄여서 화면 중앙에 위치시킴 */
       width: fit-content;
       margin: 0 auto;
     }
@@ -105,11 +125,10 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       text-align: right;
-      /* 라벨은 우측 정렬해서 파이프와 가깝게 */
     }
 
     .divider {
-      color: rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.15);
       font-size: 0.8rem;
       font-weight: 300;
     }
@@ -120,23 +139,18 @@
       font-weight: 400;
       letter-spacing: -0.01em;
       white-space: nowrap;
-      /* 줄바꿈 방지 (PC) */
     }
 
-    /* --- Main Card (Cleaner Style) --- */
+    /* --- Main Card --- */
     .content-card {
       background: var(--surface-glass);
-      /* 과한 테두리 광원 제거, 얇은 단색 라인으로 변경 */
       border: 1px solid var(--border-line);
       border-radius: var(--radius);
       padding: 56px 40px;
       text-align: center;
-
-      /* 블러는 유지하되 그림자는 아주 은은하게 */
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
       max-width: 820px;
       width: 100%;
       margin: 0 auto;
@@ -146,8 +160,7 @@
       display: inline-block;
       padding: 6px 14px;
       background: rgba(85, 66, 118, 0.4);
-      /* 투명도 높임 */
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 99px;
       font-size: 0.75rem;
       color: #EAE6F0;
@@ -156,7 +169,7 @@
     }
 
     .card-title {
-      font-size: 1.7rem;
+      font-size: 1.65rem;
       font-weight: 700;
       margin: 28px 0;
       color: var(--text-white);
@@ -173,17 +186,17 @@
       margin-right: auto;
     }
 
-    .highlight {
-      color: var(--text-white);
-      font-weight: 700;
-      /* 텍스트 글로우 제거 */
-      text-shadow: none;
-      border-bottom: 1px solid rgba(242, 205, 106, 0.5);
-      /* 밑줄로 심플하게 강조 대체 */
+    /* --- Buttons --- */
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 24px;
+      margin-bottom: 32px;
     }
 
-    /* --- Button --- */
-    /* 기존 btn-primary 유지 (max-width만 280px로 살짝 줄임 - 두 개를 나란히 놓기 위함) */
     .btn-primary {
       display: flex;
       justify-content: center;
@@ -195,11 +208,12 @@
       text-decoration: none;
       padding: 18px 0;
       border-radius: 99px;
-      font-weight: 800;
+      font-weight: 700;
+      /* 800 -> 700으로 시각적 부담 감소 */
       font-size: 1.05rem;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.02em;
       transition: all 0.2s ease;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
     }
 
     .btn-primary:hover {
@@ -208,102 +222,36 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     }
 
-    /* [추가] 인스타그램용 보조 버튼 스타일 */
-    .btn-outline {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      max-width: 280px;
-      width: 100%;
-      background: transparent;
-      color: var(--text-white);
+    .btn-text-link {
+      display: inline-block;
+      color: var(--text-gray);
       text-decoration: none;
-      padding: 18px 0;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 99px;
-      font-weight: 600;
-      font-size: 1.05rem;
-      letter-spacing: 0.03em;
+      font-size: 0.95rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      border-bottom: 1px solid rgba(204, 198, 217, 0.25);
+      padding-bottom: 4px;
       transition: all 0.2s ease;
     }
 
-    .btn-outline:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.6);
-      transform: translateY(-2px);
-    }
-
-    /* [추가] 두 버튼을 묶어주는 컨테이너 */
-    .button-group {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      align-items: center;
-      margin-top: 24px;
-    }
-
-    /* 모바일 대응 수정 */
-    @media (max-width: 768px) {
-      .container {
-        padding: 60px 20px;
-      }
-
-      h1 {
-        font-size: 2.2rem;
-      }
-
-      .brand-values {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        align-items: center;
-        text-align: center;
-      }
-
-      .label-xs {
-        text-align: center;
-        display: block;
-        margin-bottom: 4px;
-      }
-
-      .divider {
-        display: none;
-      }
-
-      .value-text {
-        white-space: normal;
-      }
-
-      .content-card {
-        padding: 40px 24px;
-      }
-
-      /* [추가] 모바일에서는 버튼을 위아래로 배치 */
-      .button-group {
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .btn-primary,
-      .btn-outline {
-        max-width: 100%;
-        width: 90%;
-      }
+    .btn-text-link:hover {
+      color: var(--text-white);
+      border-bottom-color: var(--text-white);
     }
 
     /* --- Footer --- */
     .support-area {
       text-align: center;
-      margin-top: 20px;
+      margin-top: 16px;
     }
 
     .support-title {
-      font-size: 0.85rem;
-      color: var(--secondary);
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.4);
       letter-spacing: 0.15em;
       margin-bottom: 24px;
-      font-weight: 700;
-      opacity: 0.8;
+      font-weight: 600;
+      opacity: 0.75;
       text-transform: uppercase;
     }
 
@@ -314,7 +262,7 @@
     }
 
     .contact-info strong {
-      color: var(--text-white);
+      color: rgba(255, 255, 255, 0.9);
       font-weight: 500;
     }
 
@@ -341,21 +289,26 @@
       font-weight: 500;
     }
 
-    /* 모바일 대응 */
+    /* --- 모바일 반응형 (단일 통합) --- */
     @media (max-width: 768px) {
       .container {
-        padding: 60px 20px;
+        padding: 56px 20px;
+        gap: 48px;
+      }
+
+      .lang-toggle {
+        top: -40px;
+        right: auto;
       }
 
       h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
       }
 
-      /* 모바일에서는 그리드 풀고 스택형으로 (가독성 위함) */
       .brand-values {
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        gap: 12px;
         align-items: center;
         text-align: center;
       }
@@ -363,7 +316,7 @@
       .label-xs {
         text-align: center;
         display: block;
-        margin-bottom: 4px;
+        margin-bottom: 2px;
       }
 
       .divider {
@@ -378,39 +331,16 @@
         padding: 40px 24px;
       }
 
+      .button-group {
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+
       .btn-primary {
         max-width: 100%;
-        width: 90%;
+        width: 100%;
       }
-    }
-
-    .lang-toggle {
-      position: absolute;
-      top: 40px;
-      right: 40px;
-      /* 모바일 대응 시 미디어 쿼리에서 right: 20px 정도로 수정 필요 */
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      font-size: 0.85rem;
-      font-weight: 700;
-    }
-
-    .lang-toggle button {
-      background: none;
-      border: none;
-      color: var(--text-gray);
-      cursor: pointer;
-      padding: 0;
-      transition: color 0.2s ease;
-    }
-
-    .lang-toggle button.active {
-      color: var(--secondary);
-    }
-
-    .lang-toggle button:hover {
-      color: var(--text-white);
     }
   </style>
 </head>
@@ -450,14 +380,20 @@
       </p>
 
       <div class="button-group">
+        <a href="https://apps.apple.com/kr/app/talking-potato-second-journey/id6748462530?l=en-GB"
+          class="btn btn-primary" data-i18n="tp2_btn_appstore">
+          App Store 다운로드
+        </a>
         <a href="https://play.google.com/store/apps/details?id=com.sesistudio.tp2&pcampaignid=web_share"
           class="btn btn-primary" data-i18n="tp2_btn_download">
           Google Play 다운로드
         </a>
-        <a href="https://www.instagram.com/talking_gamjwa/" class="btn btn-outline" data-i18n="tp2_btn_insta">
-          인스타그램 둘러보기
-        </a>
       </div>
+
+      <a href="https://www.instagram.com/talking_gamjwa/" class="btn-text-link" data-i18n="tp2_btn_insta">
+        인스타그램 둘러보기
+      </a>
+
     </main>
 
     <section class="support-area">
@@ -483,64 +419,61 @@
     </section>
 
   </div>
-</body>
 
-<script>
-  const i18nData = {
-    ko: {
-      studio_name: "세시스튜디오",
-      mission_text: "재미있고 의미있는 이야기를 전합니다",
-      vision_text: "일상에 소소한 힘이 되는 매력적인 콘텐츠를 만듭니다",
-      tp2_app_title: "말하는감자 - 두번째 모험",
-      tp2_app_desc: "따뜻한 이야기로 유저의 새로운 도전을 응원하는 습관 형성 게임입니다.<br><br>지금은 그저 말하는 감자일지라도,<br>꾸준히 도전하다 보면 분명 멋진 감자가 될 거예요.",
-      tp2_btn_download: "Google Play 다운로드",
-      tp2_btn_insta: "인스타그램 둘러보기",
-      customer_service: "고객 지원",
-      business_contact: "비즈니스 문의",
-      privacy_policy: "개인정보 처리방침",
-      refund_policy: "청약철회 약관"
-    },
-    en: {
-      studio_name: "SESI STUDIO",
-      mission_text: "We deliver fun and meaningful stories",
-      vision_text: "Creating engaging content that brings a little strength to your daily life",
-      tp2_app_title: "Talking Potato - Second Journey",
-      tp2_app_desc: "A habit-building game with a heartwarming story.<br><br>Even if you are just a talking potato right now,<br>with consistent effort, you will surely become an amazing potato.",
-      tp2_btn_download: "Download on Google Play",
-      tp2_btn_insta: "Visit Instagram",
-      customer_service: "Customer Service",
-      business_contact: "Bussiness Contact",
-      privacy_policy: "Privacy Policy",
-      refund_policy: "Refund Policy"
-    }
-  };
-
-  function changeLanguage(lang) {
-    // 1. 텍스트 변경
-    const elements = document.querySelectorAll('[data-i18n]');
-    elements.forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      if (i18nData[lang][key]) {
-        el.innerHTML = i18nData[lang][key]; // <br> 태그 렌더링을 위해 innerHTML 사용
+  <script>
+    const i18nData = {
+      ko: {
+        studio_name: "세시스튜디오",
+        mission_text: "재미있고 의미있는 이야기를 전합니다",
+        vision_text: "일상에 소소한 힘이 되는 매력적인 콘텐츠를 만듭니다",
+        tp2_app_title: "말하는감자 - 두번째 모험",
+        tp2_app_desc: "따뜻한 이야기로 유저의 새로운 도전을 응원하는 습관 형성 게임입니다.<br><br>지금은 그저 말하는 감자일지라도,<br>꾸준히 도전하다 보면 분명 멋진 감자가 될 거예요.",
+        tp2_btn_download: "Google Play 다운로드",
+        tp2_btn_appstore: "App Store 다운로드",
+        tp2_btn_insta: "인스타그램 둘러보기",
+        customer_service: "고객 지원",
+        business_contact: "비즈니스 문의",
+        privacy_policy: "개인정보 처리방침",
+        refund_policy: "청약철회 약관"
+      },
+      en: {
+        studio_name: "SESI STUDIO",
+        mission_text: "We deliver fun and meaningful stories",
+        vision_text: "Creating engaging content that brings a little strength to your daily life",
+        tp2_app_title: "Talking Potato - Second Journey",
+        tp2_app_desc: "A habit-building game with a heartwarming story.<br><br>Even if you are just a talking potato right now,<br>with consistent effort, you will surely become an amazing potato.",
+        tp2_btn_download: "Download on Google Play",
+        tp2_btn_appstore: "Download on App Store",
+        tp2_btn_insta: "Visit Instagram",
+        customer_service: "Customer Service",
+        business_contact: "Bussiness Contact",
+        privacy_policy: "Privacy Policy",
+        refund_policy: "Refund Policy"
       }
+    };
+
+    function changeLanguage(lang) {
+      const elements = document.querySelectorAll('[data-i18n]');
+      elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18nData[lang][key]) {
+          el.innerHTML = i18nData[lang][key];
+        }
+      });
+
+      document.getElementById('btn-ko').classList.remove('active');
+      document.getElementById('btn-en').classList.remove('active');
+      document.getElementById(`btn-${lang}`).classList.add('active');
+
+      localStorage.setItem('preferredLang', lang);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const browserLang = navigator.language.includes('en') ? 'en' : 'ko';
+      const savedLang = localStorage.getItem('preferredLang') || browserLang;
+      changeLanguage(savedLang);
     });
-
-    // 2. 토글 버튼 활성화 상태 변경
-    document.getElementById('btn-ko').classList.remove('active');
-    document.getElementById('btn-en').classList.remove('active');
-    document.getElementById(`btn-${lang}`).classList.add('active');
-
-    // 3. 유저 설정 저장
-    localStorage.setItem('preferredLang', lang);
-  }
-
-  // 페이지 로드 시 실행
-  document.addEventListener('DOMContentLoaded', () => {
-    // 브라우저 언어가 영문인지 확인하여 자동 설정, 또는 기존 저장된 설정 불러오기
-    const browserLang = navigator.language.includes('en') ? 'en' : 'ko';
-    const savedLang = localStorage.getItem('preferredLang') || browserLang;
-    changeLanguage(savedLang);
-  });
-</script>
+  </script>
+</body>
 
 </html>
